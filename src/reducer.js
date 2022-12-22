@@ -64,6 +64,17 @@ const reducer = (state, action) => {
         ...state,
         ...action.payload,
       };
+    case 'TOGGLE_TODO':
+      const tempList = state.list.map((item) => {
+        if (item.id === action.payload) {
+          return { ...item, done: !item.done };
+        }
+        return item;
+      });
+      return {
+        ...state,
+        list: tempList,
+      };
     default:
       break;
   }

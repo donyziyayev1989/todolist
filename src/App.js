@@ -27,7 +27,11 @@ function App() {
       updateItem(editId, name);
       showAlert(true, 'success', 'Item updated');
     } else {
-      const newItem = { id: new Date().getTime().toString(), title: name };
+      const newItem = {
+        id: new Date().getTime().toString(),
+        title: name,
+        done: false,
+      };
       addItem(newItem);
       showAlert(true, 'success', 'Item Added');
     }

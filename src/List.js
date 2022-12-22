@@ -2,13 +2,26 @@ import React from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useGlobalContext } from './context';
 const List = () => {
-  const { list, setUpdateItem, removeItem, showAlert } = useGlobalContext();
+  const { list, setUpdateItem, removeItem, showAlert, toggleTodo } =
+    useGlobalContext();
   return (
     <div className='grocery-list'>
       {list.map((item) => {
-        const { id, title } = item;
+        const { id, title, done } = item;
         return (
-          <article className='grocery-item' key={id}>
+          <article
+            className={`${done ? 'grocery-item done' : 'grocery-item'}`}
+            key={id}
+          >
+            <div className='toggle-done'>
+              <input
+                type='checkbox'
+                name='done'
+                id={id}
+                value={done}
+                onChange={() => toggleTodo(id)}
+              />
+            </div>
             <p className='title'>{title}</p>
             <div className='btn-container'>
               <button

@@ -27,6 +27,9 @@ const AppProvider = ({ children }) => {
   const updateItem = (id, name) => {
     dispatch({ type: 'UPDATE_ITEM', payload: { name, id } });
   };
+  const toggleTodo = (id) => {
+    dispatch({ type: 'TOGGLE_TODO', payload: id });
+  };
   const showAlert = (show = false, type, msg) => {
     dispatch({ type: 'SHOW_ALERT', payload: { show, type, msg } });
   };
@@ -65,6 +68,7 @@ const AppProvider = ({ children }) => {
         removeAlert,
         removeAllItem,
         getLocalStorage,
+        toggleTodo,
       }}
     >
       {children}
