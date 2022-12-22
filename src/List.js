@@ -2,11 +2,11 @@ import React from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useGlobalContext } from './context';
 const List = () => {
-  const { list, setUpdateItem, removeItem, showAlert, toggleTodo } =
+  const { filteredList, setUpdateItem, removeItem, showAlert, toggleTodo } =
     useGlobalContext();
   return (
     <div className='grocery-list'>
-      {list.map((item) => {
+      {filteredList.map((item) => {
         const { id, title, done } = item;
         return (
           <article
@@ -18,7 +18,7 @@ const List = () => {
                 type='checkbox'
                 name='done'
                 id={id}
-                value={done}
+                checked={done}
                 onChange={() => toggleTodo(id)}
               />
             </div>

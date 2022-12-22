@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import List from './List';
 import Alert from './Alert';
 import { useGlobalContext } from './context';
+import Filter from './Filter';
 // Getting list from localstorage
 
 function App() {
   const {
     isEditing,
+    filter,
     list,
     editId,
     addItem,
@@ -17,6 +19,8 @@ function App() {
     updateItem,
     removeAllItem,
     getLocalStorage,
+    filterItems,
+    filteredList,
   } = useGlobalContext();
 
   const submitHandler = (e) => {
@@ -44,6 +48,10 @@ function App() {
     localStorage.setItem('list', JSON.stringify(list));
   }, [list]);
 
+  useEffect(() => {
+    filterItems(filter);
+  }, [filter, list]);
+
   return (
     <section className='section-center'>
       {alert.show && <Alert />}
@@ -63,14 +71,18 @@ function App() {
           </button>
         </div>
       </form>
-      {list.length > 0 && (
-        <div className='grocery-container'>
-          <List />
-          <button className='clear-btn' onClick={removeAllItem}>
-            clear items
-          </button>
-        </div>
-      )}
+
+      <div className='grocery-container'>
+        <Filter />
+        {list.length > 0 && (
+          <>
+            <List />
+            <button className='clear-btn' onClick={removeAllItem}>
+              clear items
+            </button>
+          </>
+        )}
+      </div>
     </section>
   );
 }

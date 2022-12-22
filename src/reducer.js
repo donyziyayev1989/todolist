@@ -17,7 +17,7 @@ const reducer = (state, action) => {
       };
     case 'SET_UPDATE_ITEM':
       const editId = action.payload;
-      const newTitle = state.list.find((item) => item.id == editId).title;
+      const newTitle = state.list.find((item) => item.id === editId).title;
       return {
         ...state,
         isEditing: true,
@@ -74,6 +74,31 @@ const reducer = (state, action) => {
       return {
         ...state,
         list: tempList,
+      };
+    case 'SET_FILTER':
+      return {
+        ...state,
+        filter: action.payload,
+      };
+    case 'FILTER_ITEMS':
+      let filteredList = [...state.list];
+      if (action.payload === 'all') {
+        filteredList = state.list;
+      }
+      if (action.payload === 'completed') {
+        filteredList = state.list.filter((item) => {
+          return item.done === true;
+        });
+      }
+      if (action.payload === 'incompleted') {
+        filteredList = state.list.filter((item) => {
+          return item.done === false;
+        });
+      }
+
+      return {
+        ...state,
+        filteredList: filteredList,
       };
     default:
       break;

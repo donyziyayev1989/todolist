@@ -1,14 +1,15 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import reducer from './reducer';
 
-const getLocalStorage = () => {};
 const AppContext = createContext();
 
 const initialState = {
   list: [],
+  filteredList: [],
   name: '',
   isEditing: false,
   editId: null,
+  filter: 'all',
   alert: { show: false, type: '', msg: '' },
 };
 const AppProvider = ({ children }) => {
@@ -54,6 +55,12 @@ const AppProvider = ({ children }) => {
       return state.el;
     }
   };
+  const setFilter = (term) => {
+    dispatch({ type: 'SET_FILTER', payload: term });
+  };
+  const filterItems = (term) => {
+    dispatch({ type: 'FILTER_ITEMS', payload: term });
+  };
 
   return (
     <AppContext.Provider
@@ -69,6 +76,8 @@ const AppProvider = ({ children }) => {
         removeAllItem,
         getLocalStorage,
         toggleTodo,
+        setFilter,
+        filterItems,
       }}
     >
       {children}

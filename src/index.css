@@ -244,10 +244,10 @@ Grocery List
 .grocery-item {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: 0.5rem;
   transition: var(--transition);
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 1rem 0.25rem 0.5rem;
   border-radius: var(--radius);
   text-transform: capitalize;
 }
@@ -317,4 +317,21 @@ Grocery List
 }
 .clear-btn:hover {
   color: var(--clr-red-dark);
+}
+.filter {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.btn-filter {
+  background: transparent;
+  margin-right: 5px;
+  padding: 3px 6px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid var(--clr-black);
+}
+.btn-filter.active {
+  background: var(--clr-primary-4);
+  color: var(--clr-white);
+  border-color: var(--clr-primary-4);
 }
