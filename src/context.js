@@ -17,11 +17,14 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'ADD_ITEM', payload: item });
     dispatch({ type: 'EMPTY_FORM' });
   };
-  const updateItem = (id) => {
-    dispatch({ type: 'UPDATE_ITEM', payload: id });
+  const setUpdateItem = (id) => {
+    dispatch({ type: 'SET_UPDATE_ITEM', payload: id });
   };
   const removeItem = (id) => {
     dispatch({ type: 'REMOVE_ITEM', payload: id });
+  };
+  const updateItem = (id, name) => {
+    dispatch({ type: 'UPDATE_ITEM', payload: { name, id } });
   };
   const showAlert = (show = false, type, msg) => {
     dispatch({ type: 'SHOW_ALERT', payload: { show, type, msg } });
@@ -40,8 +43,9 @@ const AppProvider = ({ children }) => {
         ...state,
         addItem,
         changeHandler,
-        updateItem,
+        setUpdateItem,
         removeItem,
+        updateItem,
         showAlert,
         removeAlert,
       }}

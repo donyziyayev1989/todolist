@@ -19,17 +19,15 @@ function App() {
     changeHandler,
     showAlert,
     alert,
+    updateItem,
   } = useGlobalContext();
 
-  // const [list, setList] = useState(getLocalStorage());
-  // const [isEditing, setIsEditing] = useState(false);
-  // const [editId, setEditId] = useState(null);
-  // const [alert, setAlert] = useState({ show: false, type: '', msg: '' });
   const submitHandler = (e) => {
     e.preventDefault();
     if (!name) {
       showAlert(true, 'danger', 'Please fill out the field');
     } else if (name && isEditing) {
+      updateItem(editId, name);
     } else {
       const newItem = { id: new Date().getTime().toString(), title: name };
       addItem(newItem);

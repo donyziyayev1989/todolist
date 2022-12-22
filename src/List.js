@@ -2,7 +2,7 @@ import React from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useGlobalContext } from './context';
 const List = () => {
-  const { list, updateItem, removeItem } = useGlobalContext();
+  const { list, setUpdateItem, removeItem } = useGlobalContext();
   return (
     <div className='grocery-list'>
       {list.map((item) => {
@@ -14,7 +14,7 @@ const List = () => {
               <button
                 className='edit-btn'
                 type='button'
-                onClick={() => updateItem(id)}
+                onClick={() => setUpdateItem(id)}
               >
                 <FaEdit />
               </button>

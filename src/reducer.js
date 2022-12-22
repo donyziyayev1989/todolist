@@ -15,11 +15,14 @@ const reducer = (state, action) => {
         ...state,
         ...action.payload,
       };
-    case 'UPDATE_ITEM':
+    case 'SET_UPDATE_ITEM':
+      const editId = action.payload;
+      const newTitle = state.list.find((item) => item.id == editId).title;
       return {
         ...state,
         isEditing: true,
-        editId: action.payload,
+        editId: editId,
+        name: newTitle,
       };
     case 'REMOVE_ITEM':
       return {
@@ -35,6 +38,18 @@ const reducer = (state, action) => {
       return {
         ...state,
         alert: { show: false },
+      };
+    case 'UPDATE_ITEM':
+      const { id, name } = action.payload;
+      const newList = state.list.map((item) => {
+        if (item.id === id) {
+          return { ...item, title: name };
+        }
+        return item;
+      });
+      return {
+        ...state,
+        list: newList,
       };
     default:
       break;
