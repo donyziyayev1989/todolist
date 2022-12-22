@@ -59,6 +59,11 @@ const reducer = (state, action) => {
         editId: null,
         isEditing: false,
       };
+    case 'GET_FROM_LOCAL_STORAGE':
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       break;
   }

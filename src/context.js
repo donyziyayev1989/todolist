@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import reducer from './reducer';
 
+const getLocalStorage = () => {};
 const AppContext = createContext();
 
 const initialState = {
@@ -40,6 +41,17 @@ const AppProvider = ({ children }) => {
     const value = e.target.value;
     dispatch({ type: 'SET_VALUE', payload: { [name]: value } });
   };
+  const getLocalStorage = (el) => {
+    if (localStorage.getItem(el)) {
+      dispatch({
+        type: 'GET_FROM_LOCAL_STORAGE',
+        payload: { [el]: JSON.parse(localStorage.getItem(el)) },
+      });
+    } else {
+      return state.el;
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -52,6 +64,7 @@ const AppProvider = ({ children }) => {
         showAlert,
         removeAlert,
         removeAllItem,
+        getLocalStorage,
       }}
     >
       {children}

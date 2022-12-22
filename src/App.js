@@ -2,13 +2,8 @@ import React, { useState, useEffect } from 'react';
 import List from './List';
 import Alert from './Alert';
 import { useGlobalContext } from './context';
-// const getLocalStorage = () => {
-//   if (localStorage.getItem('list')) {
-//     return JSON.parse(localStorage.getItem('list'));
-//   } else {
-//     return [];
-//   }
-// };
+// Getting list from localstorage
+
 function App() {
   const {
     isEditing,
@@ -21,6 +16,7 @@ function App() {
     alert,
     updateItem,
     removeAllItem,
+    getLocalStorage,
   } = useGlobalContext();
 
   const submitHandler = (e) => {
@@ -36,6 +32,13 @@ function App() {
       showAlert(true, 'success', 'Item Added');
     }
   };
+  useEffect(() => {
+    getLocalStorage('list');
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list]);
 
   return (
     <section className='section-center'>

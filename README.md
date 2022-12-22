@@ -10,4 +10,3 @@ Simple to do list. Created using React v16.13 and Context Api
 - Clear all todo list
 - Simple Alert
 - Local Storage
--
