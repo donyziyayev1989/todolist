@@ -29,6 +29,11 @@ const reducer = (state, action) => {
         ...state,
         list: state.list.filter((item) => item.id !== action.payload),
       };
+    case 'REMOVE_ALL':
+      return {
+        ...state,
+        list: [],
+      };
     case 'SHOW_ALERT':
       return {
         ...state,
@@ -50,6 +55,9 @@ const reducer = (state, action) => {
       return {
         ...state,
         list: newList,
+        name: '',
+        editId: null,
+        isEditing: false,
       };
     default:
       break;

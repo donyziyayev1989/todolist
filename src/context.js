@@ -32,6 +32,9 @@ const AppProvider = ({ children }) => {
   const removeAlert = () => {
     dispatch({ type: 'REMOVE_ALERT' });
   };
+  const removeAllItem = () => {
+    dispatch({ type: 'REMOVE_ALL' });
+  };
   const changeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -48,6 +51,7 @@ const AppProvider = ({ children }) => {
         updateItem,
         showAlert,
         removeAlert,
+        removeAllItem,
       }}
     >
       {children}
